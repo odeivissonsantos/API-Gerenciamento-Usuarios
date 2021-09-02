@@ -11,10 +11,12 @@ import javax.persistence.Id;
 import com.odeivissonsantos.gerenciamentousuarios.enums.TipoTelefone;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

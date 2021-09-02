@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.odeivissonsantos.gerenciamentousuarios.dtos.PessoaDTO;
 import com.odeivissonsantos.gerenciamentousuarios.model.Pessoa;
 import com.odeivissonsantos.gerenciamentousuarios.services.PessoaService;
 
@@ -21,8 +22,9 @@ public class PessoaController {
 	private final PessoaService service;
 	
 	@PostMapping
-	public ResponseEntity<Pessoa> createPessoa(@RequestBody Pessoa pessoa){
-		return ResponseEntity.ok().body(service.createPessoa(pessoa));
+	public ResponseEntity<Pessoa> createPessoa(@RequestBody PessoaDTO pessoaDTO){
+			service.createPessoa(pessoaDTO);
+		return ResponseEntity.created(null).build();
 	}
 	
 

@@ -2,6 +2,7 @@ package com.odeivissonsantos.gerenciamentousuarios.services;
 
 import org.springframework.stereotype.Service;
 
+import com.odeivissonsantos.gerenciamentousuarios.dtos.PessoaDTO;
 import com.odeivissonsantos.gerenciamentousuarios.model.Pessoa;
 import com.odeivissonsantos.gerenciamentousuarios.repositorys.PessoaRepository;
 
@@ -13,8 +14,17 @@ public class PessoaService {
 	
 	private final PessoaRepository repository;
 	
-	public Pessoa createPessoa(Pessoa pessoa){
-		return repository.save(pessoa);
+	
+	
+	public void createPessoa(PessoaDTO pessoaDTO){
+		Pessoa pessoaSave = Pessoa.builder()
+				.nome(pessoaDTO.getNome())
+				.cpf(pessoaDTO.getCpf())
+				.sobrenome(pessoaDTO.getSobrenome())
+				.telefones(pessoaDTO.getTelefones())
+				.build();
+		
+		repository.save(pessoaSave);
 	}
 
 }
