@@ -1,7 +1,10 @@
 package com.odeivissonsantos.gerenciamentousuarios.controllers;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +28,13 @@ public class PessoaController {
 	public ResponseEntity<Pessoa> createPessoa(@RequestBody PessoaDTO pessoaDTO){
 			service.createPessoa(pessoaDTO);
 		return ResponseEntity.created(null).build();
+	}
+	
+	
+	@GetMapping
+	public List<Pessoa> listAll() {
+		return service.listAll();
+		
 	}
 	
 
