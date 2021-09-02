@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.odeivissonsantos.gerenciamentousuarios.model.Pessoa;
-import com.odeivissonsantos.gerenciamentousuarios.repositorys.PessoaRepository;
+import com.odeivissonsantos.gerenciamentousuarios.services.PessoaService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,11 +18,11 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/pessoas")
 public class PessoaController {
 	
-	private final PessoaRepository repository;
+	private final PessoaService service;
 	
 	@PostMapping
 	public ResponseEntity<Pessoa> createPessoa(@RequestBody Pessoa pessoa){
-		return ResponseEntity.ok().body(repository.save(pessoa));
+		return ResponseEntity.ok().body(service.createPessoa(pessoa));
 	}
 	
 
