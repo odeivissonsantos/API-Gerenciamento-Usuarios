@@ -53,5 +53,14 @@ public class PessoaService {
 		repository.deleteById(id);
 		
 	}
+	
+	public void updateById(Long id, Pessoa pessoaAtualizada) throws PessoaNotFoundException {
+		verifyIfExists(id);
+		pessoaAtualizada.setId(id);
+
+		
+	repository.save(pessoaAtualizada);
+		
+	}
 
 }
