@@ -17,7 +17,9 @@ public class PessoaService {
 	
 	private final PessoaRepository repository;
 	
-	
+	public Pessoa verifyIfExists(Long id) throws PessoaNotFoundException {
+		return repository.findById(id).orElseThrow(() -> new PessoaNotFoundException(id));
+	}
 	
 	public void createPessoa(PessoaDTO pessoaDTO){
 		Pessoa pessoaSave = Pessoa.builder()
@@ -39,9 +41,17 @@ public class PessoaService {
 
 
 	public Pessoa findById(Long id) throws PessoaNotFoundException {
-		Pessoa pessoa = repository.findById(id).orElseThrow(() -> new PessoaNotFoundException(id));
+		Pessoa pessoa = verifyIfExists(id);
 		
 		return pessoa;
+	}
+
+
+
+	public void delete(Long id) throws PessoaNotFoundException {
+		verifyIfExists(id);
+		repository.deleteById(id);
+		
 	}
 
 }
