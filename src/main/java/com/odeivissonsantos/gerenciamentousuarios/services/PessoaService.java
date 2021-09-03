@@ -1,7 +1,6 @@
 package com.odeivissonsantos.gerenciamentousuarios.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -40,11 +39,9 @@ public class PessoaService {
 
 
 	public Pessoa findById(Long id) throws PessoaNotFoundException {
-		Optional<Pessoa> optionalPessoa = repository.findById(id);
-		if (optionalPessoa.isEmpty()) {
-			throw new PessoaNotFoundException(id);
-		}
-		return optionalPessoa.get();
+		Pessoa pessoa = repository.findById(id).orElseThrow(() -> new PessoaNotFoundException(id));
+		
+		return pessoa;
 	}
 
 }
